@@ -1,7 +1,10 @@
-from playwright.sync_api import sync_playwright, expect
+from playwright.sync_api import sync_playwright, expect , Page
+import logging
+
+logger = logging.getLogger(__name__)
 
 class PaymentsPage:
-    def __init__(self,page):
+    def __init__(self, page: Page):
         self.page = page
         self.day_select_locator = page.locator('select').nth(0)
         self.month_select_locator = page.locator('select').nth(1)
@@ -10,7 +13,7 @@ class PaymentsPage:
         self.name_on_card_locator = page.locator("div.field:has-text('Name on Card') input")
         self.country_select_locator = page.locator('input[placeholder="Select Country"]')
         self.email_locator = page.locator('div.user__name.mt-5')
-        self.coupon_code_locator = page.locator('input[name = "coupon"]')  #rahulshettyacademy #* Coupon Applied check this text there :* Coupon Applied
+        self.coupon_code_locator = page.locator('input[name = "coupon"]')
         self.apply_coupon_btn = page.get_by_role("button", name="Apply Coupon")
         self.dropdown_results = page.locator("section.ta-results button.ta-item")
         # Targets the success message layout container that appears afterward
@@ -31,22 +34,15 @@ class PaymentsPage:
         self.month_select_locator.select_option(value=card_data.get("expiry_month"))
         
         # 3. Handle Dynamic Angular Country Suggestion Field
-        self.country_select_locator.fill(card_data.get("country"))
-        """
-        country_option = self.dropdown_results(
-            "button", 
-            name=card_data.get("country"), 
-            exact=True
-        )
-        country_option.wait_for(state="visible", timeout=10000)
-        country_option.click()
-        """
-        #country_option = self.dropdown_results.filter(has_text=card_data.get("country"))
-        #country_option = self.page.get_by_role("button",name=card_data.get("country"),exact=True)
-        #country_option = self.dropdown_results("button", name=card_data.get("country"),  exact=True)
-        self.dropdown_results.filter(has_text=card_data.get("country")).nth(0).click(timeout=10000)
-        #country_option.wait_for(state="visible", timeout=10000)
-        #country_option.click()
+        country = card_data.get("country").strip()
+        #self.country_select_locator.fill(country)
+        self.country_select_locator.press_sequentially(country, delay=100)
+        self.dropdown_results.first.wait_for()
+       
+        country_option = self.page.locator("button.ta-item").get_by_text(country, exact=True)
+        logger.info(f"Country selected: {country}")
+        country_option.first.click()
+
 
         # 4. Handle Coupon Submission
         self.coupon_code_locator.fill(coupon_code)
@@ -55,15 +51,9 @@ class PaymentsPage:
         email = self.email_locator.text_content()
         coupon_msg = self.coupon_success_msg.text_content()
         self.place_order_btn_locator.click()
-        self.page.wait_for_url('**/thanks')
+        
+        self.page.wait_for_url("**/dashboard/thanks*")
         after_payment_url = self.page.url
-        print("After payment url: ", after_payment_url)       
-        # 5. Operational Return: Pass the success element back to the test script for validation
-        return coupon_msg , email , after_payment_url
-
-
-
-
-
-
-    
+        logger.info(f"After payment URL: {after_payment_url}")
+        
+        return coupon_msg, email, after_payment_url

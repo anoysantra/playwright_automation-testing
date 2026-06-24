@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+env/
+venv/
+.Python
+.pytest_cache/
+
+# VSCode
+.vscode/
+
+# Playwright reports and logs
+reports/
+logs/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# IDE files
+*.swp
+*.swo
+
+# Secrets
+*.json
+
+# macOS
+.DS_Store

@@ -1,0 +1,16 @@
+{
+    "orders": [
+        {
+            "country": "India",
+            "productOrderedId": "6960ea76c941646b7a8b3dd5"
+        },
+        {
+            "country": "India",
+            "productOrderedId": "6960eac0c941646b7a8b3e68"
+        },
+        {
+            "country": "India",
+            "productOrderedId": "6960eae1c941646b7a8b3ed3"
+        }
+    ]
+}

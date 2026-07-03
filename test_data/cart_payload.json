@@ -1,0 +1,31 @@
+{
+  "cart_payloads": [
+    {
+      "product": {
+        "productId": "6262e990e26b7e1a10e89bf0",
+        "productName": "ADIDAS ORIGINAL",
+        "category": "Footwear"
+      },
+      "quantity": 1,
+      "price": 150
+    },
+    {
+      "product": {
+        "productId": "6262e990e26b7e1a10e89bf1",
+        "productName": "ZARA COAT 3",
+        "category": "Apparel"
+      },
+      "quantity": 1,
+      "price": 2500
+    },
+    {
+      "product": {
+        "productId": "6262e990e26b7e1a10e89bf2",
+        "productName": "iphone 13 pro",
+        "category": "Electronics"
+      },
+      "quantity": 1,
+      "price": 120000
+    }
+  ]
+}

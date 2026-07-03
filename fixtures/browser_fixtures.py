@@ -9,5 +9,6 @@ def page_initialization():
         context = browser.new_context()
         page = context.new_page()
         yield page
+        #closing
         context.close()
         browser.close()

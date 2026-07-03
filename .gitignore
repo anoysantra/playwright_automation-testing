@@ -11,9 +11,7 @@ venv/
 # VSCode
 .vscode/
 
-# Playwright reports and logs
-reports/
-logs/
+
 
 # Distribution / packaging
 build/
@@ -24,8 +22,6 @@ dist/
 *.swp
 *.swo
 
-# Secrets
-*.json
 
 # macOS
 .DS_Store

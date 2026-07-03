@@ -43,7 +43,7 @@ def test_orders_page_empty(page_initialization):
     msg_check = order.empty_orders_validation()
     if msg_check == "":
         pytest.skip("Empty orders text not found. Skipping assertion.")
-        
+
     assert 'You have No Orders to show at this time.' in msg_check, f'ERROR : {msg_check} error in orders empty page'
 
 
@@ -118,6 +118,7 @@ def test_sign_out(page_initialization):
     login_instance = LoginPage(page)
     sign_out_url = login_instance.sign_out()
     assert '/login' in sign_out_url, 'ERROR : Sign out URL not matching'
+
 
 
 

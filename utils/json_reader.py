@@ -1,18 +1,31 @@
 import json
+from pathlib import Path
 
-global products
+
+def _load_json_data(file_name: str) -> dict:
+    file_path = Path(__file__).resolve().parents[1] / "test_data" / file_name
+    with file_path.open(encoding="utf-8") as file_handle:
+        return json.load(file_handle)
+
 
 def json_helper_products():
-    with open('test_data/order_shopping_data.json') as f:
-        product_data = json.load(f)
-        products = product_data['products']
-        return products
+    product_data = _load_json_data("order_shopping_data.json")
+    return product_data["products"]
+
 
 def json_helper_payments():
-    with open('test_data/card_details.json') as f:
-        payment_info = json.load(f)
-        card = payment_info['test_card']
-        return card
+    payment_info = _load_json_data("card_details.json")
+    return payment_info["test_card"]
+
+
+def json_helper_cart():
+    cart_info = _load_json_data("cart_payload.json")
+    return cart_info["cart_payloads"]
+
+def json_helper_create_order():
+    order_info = _load_json_data("order_create_data.json")
+    return order_info
+
 
 
 

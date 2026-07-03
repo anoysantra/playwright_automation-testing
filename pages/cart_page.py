@@ -14,8 +14,8 @@ class CartPage:
         self.total_locator = page.get_by_text("Total", exact=True)
         self.subtotal_locator = page.get_by_text('Subtotal')
         self.checkout_btn_locator = page.get_by_role('button', name='Checkout')
-        self.subtotal_amount_locator = page.get_by_role('//div[contains(@class ,"subtotal")]//ul[1]//li[1]/span[@class="value"]')
-        self.total_amount_locator = page.get_by_role('//div[contains(@class ,"subtotal")]//ul[2]//li[2]/span[@class="value"]')
+        self.subtotal_amount_locator = page.locator('//div[contains(@class ,"subtotal")]//ul[1]//li[1]/span[@class="value"]')
+        self.total_amount_locator = page.locator('//div[contains(@class ,"subtotal")]//ul[2]//li[2]/span[@class="value"]')
 
     def cart_history_empty(self):
         self.cart_navbar_btn.click()

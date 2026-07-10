@@ -26,7 +26,7 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
     - name: Install Playwright Browsers
-      run: playwright install --with-deps
+      run: playwright install chromium --with-deps
 
     - name: Run Playwright tests
       run: pytest --html=report.html --self-contained-html

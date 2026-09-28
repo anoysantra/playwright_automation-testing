@@ -18,4 +18,4 @@ RUN mkdir -p reports
 ENV PYTHONPATH=/app
 
 # Command to run ALL tests inside the 'tests' folder and output the HTML report
-CMD ["pytest", "tests", "-v", "--html=playwright-report/index.html", "--self-contained-html"]
+CMD ["pytest", "tests", "-v", "--html=playwright-report/report.html", "--self-contained-html"]

@@ -27,7 +27,7 @@ jobs:
           -v ${{ github.workspace }}:/app/reports \
           playwright-tests
 
-      # Fix permissions so GitHub Actions runner can read the report folder
+      # Fix permissions so GitHub Actions runner can read the report folder and check the report
     - name: Fix File Permissions
       if: always()
       run: sudo chown -R $USER:$USER ${{ github.workspace }}/playwright-report

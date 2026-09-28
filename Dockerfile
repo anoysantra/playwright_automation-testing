@@ -1,5 +1,5 @@
 # Step 1: Start with the official Microsoft Playwright Python base image
-FROM mcr.microsoft.com/playwright/python:v1.48.0-jammy
+FROM mcr.microsoft.com/playwright/python:v1.60.0-jammy
 # Step 2: Set the folder inside the container where your code will live
 WORKDIR /app
 # Step 3: Copy only the dependencies file first (optimizes Docker caching)
